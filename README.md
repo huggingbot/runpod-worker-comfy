@@ -19,30 +19,30 @@ Read our article here: https://blib.la/blog/comfyui-on-runpod
 - [Quickstart](#quickstart)
 - [Features](#features)
 - [Config](#config)
-  * [Upload image to AWS S3](#upload-image-to-aws-s3)
+  - [Upload image to AWS S3](#upload-image-to-aws-s3)
 - [Use the Docker image on RunPod](#use-the-docker-image-on-runpod)
-  * [Create your template (optional)](#create-your-template-optional)
-  * [Create your endpoint](#create-your-endpoint)
-  * [GPU recommendations](#gpu-recommendations)
+  - [Create your template (optional)](#create-your-template-optional)
+  - [Create your endpoint](#create-your-endpoint)
+  - [GPU recommendations](#gpu-recommendations)
 - [API specification](#api-specification)
-  * [JSON Request Body](#json-request-body)
-  * [Fields](#fields)
-    + ["input.images"](#inputimages)
+  - [JSON Request Body](#json-request-body)
+  - [Fields](#fields)
+    - ["input.images"](#inputimages)
 - [Interact with your RunPod API](#interact-with-your-runpod-api)
-  * [Health status](#health-status)
-  * [Generate an image](#generate-an-image)
-    + [Example request for SDXL with cURL](#example-request-for-sdxl-with-curl)
+  - [Health status](#health-status)
+  - [Generate an image](#generate-an-image)
+    - [Example request for SDXL with cURL](#example-request-for-sdxl-with-curl)
 - [How to get the workflow from ComfyUI?](#how-to-get-the-workflow-from-comfyui)
 - [Bring Your Own Models and Nodes](#bring-your-own-models-and-nodes)
-  * [Network Volume](#network-volume)
-  * [Custom Docker Image](#custom-docker-image)
+  - [Network Volume](#network-volume)
+  - [Custom Docker Image](#custom-docker-image)
 - [Local testing](#local-testing)
-  * [Setup](#setup)
-    + [Setup for Windows](#setup-for-windows)
-  * [Testing the RunPod handler](#testing-the-runpod-handler)
-  * [Local API](#local-api)
-    + [Access the local Worker API](#access-the-local-worker-api)
-    + [Access local ComfyUI](#access-local-comfyui)
+  - [Setup](#setup)
+    - [Setup for Windows](#setup-for-windows)
+  - [Testing the RunPod handler](#testing-the-runpod-handler)
+  - [Local API](#local-api)
+    - [Access the local Worker API](#access-the-local-worker-api)
+    - [Access local ComfyUI](#access-local-comfyui)
 - [Automatically deploy to Docker hub with GitHub Actions](#automatically-deploy-to-docker-hub-with-github-actions)
 - [Acknowledgments](#acknowledgments)
 
@@ -440,3 +440,10 @@ And also make sure to add these **variables** to your repository:
 - Thanks to [Justin Merrell](https://github.com/justinmerrell) from RunPod for [worker-1111](https://github.com/runpod-workers/worker-a1111), which was used to get inspired on how to create this worker
 - Thanks to [Ashley Kleynhans](https://github.com/ashleykleynhans) for [runpod-worker-a1111](https://github.com/ashleykleynhans/runpod-worker-a1111), which was used to get inspired on how to create this worker
 - Thanks to [comfyanonymous](https://github.com/comfyanonymous) for creating [ComfyUI](https://github.com/comfyanonymous/ComfyUI), which provides such an awesome API to interact with Stable Diffusion
+
+## Instructions
+
+- docker build --build-arg --platform linux/amd64 -t weechien/flux:schnell-q4-0-gguf .
+- docker push weechien/flux:schnell-q4-0-gguf
+- docker build --build-arg HUGGINGFACE_ACCESS_TOKEN=<token> --platform linux/amd64 -t weechien/flux:dev-q8-0-gguf .
+- docker push weechien/flux:dev-q8-0-gguf
